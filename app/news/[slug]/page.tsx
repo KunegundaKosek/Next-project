@@ -1,4 +1,5 @@
 import { DUMMY_NEWS } from "@/dummynews";
+import { notFound } from "next/navigation";
 
 type Props = {
     params: {
@@ -10,6 +11,10 @@ const NewDetailPage = ({ params }: Props) => {
     const newsSlug = params.slug;
 
     const newsItem = DUMMY_NEWS.find(item => item.slug === newsSlug);
+
+    if(!newsItem) {
+        notFound();
+    }
 
     return (
         <article>
